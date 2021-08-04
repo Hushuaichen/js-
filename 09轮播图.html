@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .banner{
+            width: 500px;
+            height: 333px;
+            position: relative;
+            left: 50%;
+            margin-left: -250px;
+            margin-top: 100px;
+
+        }
+        .banner ul li{
+            list-style: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .banner ul li:nth-of-type(1){
+            opacity: 1;
+        }
+        .banner .nav a:nth-of-type(1){
+            display: block;
+            width: 42px;
+            height: 69px;
+            background-color: pink;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -35px;
+            background: url(/img/icon-slides.png) no-repeat -84px;
+            z-index: 99;
+        }
+        .banner .nav a:nth-of-type(2){
+            display: block;
+            width: 42px;
+            height: 69px;
+            /* background-color: pink; */
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -35px;
+            background: url(/img/icon-slides.png) no-repeat -126px;
+            z-index: 99;
+        }
+        .banner .nav a:nth-of-type(1):hover{
+            background-position: 0px;
+        }
+        .banner .nav a:nth-of-type(2):hover{
+            background-position: -42px;
+        }
+        .banner .pointer {
+            width: 130px;
+            height: 20px;
+            /* background: pink; */
+            position: absolute;
+            right: 5px;
+            bottom: 10px;
+            z-index: 99;
+
+        }
+        .banner .pointer a{
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: #ccc;
+            border: 2px solid #fff;
+            float: left;
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+        .banner .pointer .active{
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+   <ul>
+       <li><a href="javascript:;"><img src="/img/1.jpg" alt=""></a></li>
+       <li><a href="javascript:;"><img src="/img/2.jpg" alt=""></a></li>
+       <li><a href="javascript:;"><img src="/img/3.jpg" alt=""></a></li>
+       <li><a href="javascript:;"><img src="/img/4.jpg" alt=""></a></li>
+       <li><a href="javascript:;"><img src="/img/5.jpg" alt=""></a></li>
+   </ul> 
+   <div class="nav">
+       <a href="javascript:;"></a>
+       <a href="javascript:;"></a>
+   </div>
+   <div class="pointer">
+       <a href="javascript:;" class="active"></a>
+       <a href="javascript:;"></a>
+       <a href="javascript:;"></a>
+       <a href="javascript:;"></a>
+       <a href="javascript:;"></a>
+   </div>
+</div>
+<script>
+    let left = document.querySelectorAll('.nav a')[0]
+    let right = document.querySelectorAll('.nav a')[1]
+    let lists = document.querySelectorAll('li')
+    let pointer = document.querySelectorAll('.pointer a')
+    for(let i=0;i<lists.length;i++){
+        pointer[i].index=i
+    }
+    let banner = document.querySelector('.banner')
+    let pt = document.querySelector('.pointer')
+    let current=0
+    let fn = function(index){
+        if(index>=lists.length){
+            index=0
+        }else if(index<0){
+            index=index.length0-1
+        }
+        lists[current].style.zIndex=0
+        lists[current].style.opacity=0
+        pointer[current].className=''
+
+        lists[index].style.zIndex=1
+        lists[index].style.opacity=1
+        pointer[index].className='active'
+        current=index
+    }
+    // right.addEventListener('click',function(){
+    //    fn(current+1)
+    // })
+    // left.addEventListener('click',function(){
+    //    fn(current-1)
+    // })
+    banner.addEventListener('click',function(event){
+        if(event.target===right){
+            fn(current+1)
+        }else if(event.target===left){
+            fn(current-1)
+        }else if(event.target.parentNode===pt){
+            fn(event.target.index)
+        }
+    })
+    let flag = true
+    setTimeout(function auto(){
+        if(flag){
+            fn(current+1)
+        }
+        setTimeout(auto,2000)
+    },2000)
+    banner.addEventListener('mouseenter',function(){
+        flag=false;
+    });
+    banner.addEventListener('mouseleave',function(){
+        flag=true;
+    })
+</script>
+</body>
+</html>

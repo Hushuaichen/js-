@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            let btn1=document.getElementById('btn1')
+            let btn2=document.getElementById('btn2')
+            let btn3=document.getElementById('btn3')
+            let btn4=document.getElementById('btn4')
+            btn1.onclick=function(){
+            let play = document.getElementsByName('play')
+                for(let i=0;i<play.length;i++){
+                   play[i].checked=true
+                }
+            }
+            btn2.onclick=function(){
+            let play = document.getElementsByName('play')
+                for(let i=0;i<play.length;i++){
+                   play[i].checked=false
+                }
+            }
+            btn3.onclick=function(){
+            let play = document.getElementsByName('play')
+            for(let i=0;i<play.length;i++){
+                play[i].checked=!play[i].checked
+                }
+            }
+            btn4.onclick=function(){
+            let play = document.getElementsByName('play')
+            let arr=[]
+            for(let i=0;i<play.length;i++){
+                if(play[i].checked){
+                    arr.push(play[i].value)
+                }
+                }
+                console.log(arr);
+            }
+            let all = document.querySelector('#all')
+            let play = document.getElementsByName('play')
+            all.onclick=function(){
+                // let flag=true
+                for(let i=0;i<play.length;i++){
+                  play[i].checked=all.checked
+                    }
+                }
+                for(let i=0;i<play.length;i++){
+                    play[i].onclick=function(){
+                    let flag=true
+                    for(let j=0;j<play.length;j++){
+                        if(!play[j].checked){
+                            flag=false;
+                            break
+                        }
+                    }
+                all.checked=flag
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="checkbox" name="all" id="all"><label for="all">全选</label>
+    <br>
+    <input type="checkbox" name="play" value="篮球">篮球
+    <input type="checkbox" name="play" value="足球">足球
+    <input type="checkbox" name="play" value="棒球">棒球
+    <input type="checkbox" name="play" value="排球">排球
+    <br/>
+    <button id="btn1">全选</button>
+    <button id="btn2">全不选</button>
+    <button id="btn3">反选</button>
+    <button id="btn4">提交</button>
+    
+
+
+</body>
+</html>

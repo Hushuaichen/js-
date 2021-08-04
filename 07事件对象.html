@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box1{
+            width: 200px;
+            height: 100px;
+            border: 1px solid #000;
+        }
+        .box2{
+            width: 200px;
+            height: 30px;
+            border: 1px solid #000;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+
+    </div>
+    <div class="box2">
+
+    </div>
+    <script>
+        let box1 = document.querySelector('.box1')
+        let box2 = document.querySelector('.box2')
+        box1.onmousemove=function(event){
+            let x = event.clientX
+            let y = event.clientY
+            box2.innerHTML='x='+x+'y='+y
+        }
+    </script>
+</body>
+</html>

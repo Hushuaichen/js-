@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         const school = {
+            name: '尚硅谷',
+            pos: ['北京','上海','深圳'],
+            founder: {
+                name: '刚哥'
+            },
+            change: function(){
+                console.log('改变');
+            }
+        }
+        let test = {}
+        for(let i in school){
+            test[i]=school[i]
+        }
+        console.log(test);
+
+    </script>
+</body>
+</html>

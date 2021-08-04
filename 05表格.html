@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border: 1px solid black;
+            font-size: 16px;
+            margin:50px auto;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+        th,td{
+            border: 1px solid black;
+          
+        }
+        .box{
+            width: 300px;
+            height: 210px;
+            border: 1px solid #000;
+            margin:50px auto;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            function Del(){
+                   let del = this.parentNode.parentNode
+                   let tdName=del.firstElementChild.innerHTML
+                   if(confirm(`确认要删除${tdName}吗?`)){
+                    del.remove()
+                       
+                   }
+                }
+            let link = document.querySelectorAll('a')
+            let table = document.querySelectorAll('table')
+            let tr = document.querySelectorAll('tr')
+            for(let i=0;i<link.length;i++){
+                link[i].onclick=Del
+            }
+            let submit = document.querySelector('button')
+            let addName=document.querySelectorAll('input')[0].value
+            let addEmail=document.querySelectorAll('input')[1].value
+            let addSalary=document.querySelectorAll('input')[2].value
+            submit.onclick=function(){
+                let tr = document.createElement('tr')
+                let tdN = document.createElement('td')
+                let tdEmail = document.createElement('td')
+                let tdSalary = document.createElement('td')
+                let tdlink = document.createElement('td')
+                let linkA = document.createElement('a')
+                linkA.href="javascript:;"
+                linkA.onclick=Del
+                let nameText = document.createTextNode(addName)
+                let emailText = document.createTextNode(addEmail)
+                let salaryText = document.createTextNode(addSalary)
+                let aText = document.createTextNode('delete')
+                tdN.appendChild(nameText)
+                tdEmail.appendChild(emailText)
+                tdSalary.appendChild(salaryText)
+                linkA.appendChild(aText)
+                tdlink.appendChild(linkA)
+                tr.appendChild(tdN)
+                tr.appendChild(tdEmail)
+                tr.appendChild(tdSalary)
+                tr.appendChild(tdlink)
+                let body = document.querySelector('tbody')
+                body.appendChild(tr)
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Tom</td>
+            <td>Tom@tom.com</td>
+            <td>5000</td>
+            <td><a href="##">delete</a></td>
+        </tr>
+        <tr>
+            <td>Jerry</td>
+            <td>jerry@sohu.com</td>
+            <td>8000</td>
+            <td><a href="##">delete</a></td>
+        </tr>
+        <tr>
+            <td>bob</td>
+            <td>bob@tom.com</td>
+            <td>10000</td>
+            <td><a href="##">delete</a></td>
+        </tr>
+    </table>
+    <div class="box">
+        <p>添加新员工</p>
+        name:<input type="text"><br><br>
+        email:<input type="text"><br><br>
+        salary:<input type="text"><br><br>
+        <button>submit</button>
+    </div>
+</body>
+</html>
